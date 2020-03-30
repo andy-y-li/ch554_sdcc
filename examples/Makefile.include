@@ -51,7 +51,8 @@ $(TARGET).hex: $(TARGET).ihx
 	$(PACK_HEX) $(TARGET).ihx > $(TARGET).hex
 
 $(TARGET).bin: $(TARGET).ihx
-	$(OBJCOPY) -I ihex -O binary $(TARGET).ihx $(TARGET).bin
+	@makebin -p $(TARGET).ihx $(TARGET).bin
+#	$(OBJCOPY) -I ihex -O binary $(TARGET).ihx $(TARGET).bin
 	
 flash: $(TARGET).bin pre-flash
 	$(WCHISP) -f $(TARGET).bin -g
